@@ -1,4 +1,5 @@
 .env
 blockengine.json
 payer.json
-src/keypairs/*
+/src/keypairs/*
+node_modules/
