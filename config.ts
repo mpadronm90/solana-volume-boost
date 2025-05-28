@@ -1,17 +1,18 @@
+import dotenv from 'dotenv';
 import { PublicKey, Connection, Keypair } from '@solana/web3.js';
 import bs58 from 'bs58';
 
-export const rayFee = new PublicKey('7YttLkHDoNj9wyDur5pM1ejNaAvT9X4eqaYcHQqtj2G5');
-export const tipAcct = new PublicKey('Cw8CFyM9FkoMi7K7Crf6HNQqf4uEMzpKw6QNghXLvLkY');
-export const RayLiqPoolv4 = new PublicKey('675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8');
+dotenv.config();
 
-export const connection = new Connection('', { // RPC URL HERE
+export const rayFee = new PublicKey(process.env.RAY_FEE!);
+export const tipAcct = new PublicKey(process.env.TIP_ACCT!);
+export const RayLiqPoolv4 = new PublicKey(process.env.RAY_LIQ_POOL_V4!);
+
+export const connection = new Connection(process.env.RPC_URL!, {
   commitment: 'confirmed',
 });
 
 export const wallet = Keypair.fromSecretKey(
-  bs58.decode(
-    '' // PRIV KEY OF SOL SENDER
-  )
+  bs58.decode(process.env.SOL_SENDER_PRIV_KEY!)
 );
 

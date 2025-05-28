@@ -137,7 +137,13 @@ async function createAndSignVersionedTx(instructionsChunk: TransactionInstructio
 		});
 	});
 
-	const versionedTx = new VersionedTransaction(instructionsChunk);
+	const message = new TransactionMessage({
+		payerKey: wallet.publicKey,
+		recentBlockhash: blockhash,
+		instructions: instructionsChunk,
+	}).compileToV0Message();
+
+	const versionedTx = new VersionedTransaction(message);
 	const serializedMsg = versionedTx.serialize();
 
 	console.log("Txn size:", serializedMsg.length);
